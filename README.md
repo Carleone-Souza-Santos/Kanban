@@ -20,6 +20,8 @@ Ele oferece a funcionalidade de adicionar, arrastar e soltar tarefas entre difer
 ## Como Executar o Projeto
 
 ### Pré-requisitos
+https://carleone-souza-santos.github.io/Kanban/
+<a href="https://carleone-souza-santos.github.io/Kanban/" target="_blank"></a>
 
 - Um navegador web atualizado.</p>
 <img src="https://github.com/Carleone-Souza-Santos/Kanban/blob/master/assets/iPhone.png?raw=true" alt="img Iphone13" style="height: 300px;" />
