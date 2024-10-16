@@ -1,37 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kanban Board</title>
+    <title>Kanban</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Registro</h1>
+    <h1>Tarefas</h1>
 
     <div class="kanban-board">
       <div class="kanban-column" id="todo">
-        <h2>Hoje</h2>
+        <h2>A Fazer</h2>
       </div>
       <div class="kanban-column" id="inprogress">
-        <h2>Processando</h2>
+        <h2>Em Progresso</h2>
       </div>
       <div class="kanban-column" id="done">
-        <h2>Finalizado</h2>
+        <h2>Concluído</h2>
       </div>
     </div>
 
+    <div id="showAddTaskMenu">+</div>
+
     <div id="addTaskMenu" class="hidden">
-      <input
-        type="text"
-        id="newTaskInput"
-        placeholder="Escreva nova tarefa..."
-      />
+      <input type="text" id="newTaskInput" placeholder="Nova tarefa..." />
       <button id="addTaskButton">Adicionar</button>
     </div>
 
-    <!-- Botão redondo para adicionar tarefa -->
-    <button class="add-task-btn" id="showAddTaskMenu">+</button>
     <script src="javascript.js"></script>
   </body>
 </html>

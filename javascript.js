@@ -5,51 +5,51 @@ const newTaskInput = document.getElementById('newTaskInput');
 const todoColumn = document.getElementById('todo');
 
 showAddTaskMenuBtn.addEventListener('click', () => {
-  addTaskMenu.classList.toggle('hidden');
+  // Alternar visibilidade do menu
+  if (addTaskMenu.classList.contains('hidden')) {
+    addTaskMenu.classList.remove('hidden');
+    addTaskMenu.style.display = 'flex';
+    newTaskInput.focus();
+  } else {
+    addTaskMenu.classList.add('hidden');
+    addTaskMenu.style.display = 'none';
+  }
 });
 
 addTaskButton.addEventListener('click', () => {
-  const taskText = newTaskInput.value;
+  const taskText = newTaskInput.value.trim();
   if (taskText !== '') {
     const newTask = document.createElement('div');
     newTask.classList.add('kanban-item');
     newTask.setAttribute('draggable', 'true');
-
-    const uniqueId = 'task-' + new Date().getTime();
-    newTask.setAttribute('id', uniqueId);
     newTask.textContent = taskText;
 
-    newTask.addEventListener('dragstart', dragStart);
-    newTask.addEventListener('dragend', dragEnd);
+    newTask.addEventListener('dragstart', handleDragStart);
+    newTask.addEventListener('dragend', handleDragEnd);
 
     todoColumn.appendChild(newTask);
 
     newTaskInput.value = '';
+
     addTaskMenu.classList.add('hidden');
+    addTaskMenu.style.display = 'none';
   }
 });
 
-const dragStart = (event) => {
-  event.dataTransfer.setData('text/plain', event.target.id);
-  setTimeout(() => {
-    event.target.classList.add('hide');
-  }, 0);
-};
+function handleDragStart(event) {
+  event.target.classList.add('dragging');
+}
 
-const dragEnd = (event) => {
-  event.target.classList.remove('hide');
-};
+function handleDragEnd(event) {
+  event.target.classList.remove('dragging');
+}
 
-const columns = document.querySelectorAll('.kanban-column');
-
-columns.forEach((column) => {
+document.querySelectorAll('.kanban-column').forEach((column) => {
   column.addEventListener('dragover', (event) => {
     event.preventDefault();
-  });
-
-  column.addEventListener('drop', (event) => {
-    const id = event.dataTransfer.getData('text');
-    const draggable = document.getElementById(id);
-    column.appendChild(draggable);
+    const draggingItem = document.querySelector('.dragging');
+    if (draggingItem) {
+      column.appendChild(draggingItem);
+    }
   });
 });
